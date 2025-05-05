@@ -7,3 +7,6 @@ Unit::Unit(int id, std::string team, int x, int y)
 void Unit::print_info() const {
     std::cout << "Unit" << id_ << " (" << team_ << ") at (" << x_ << ", " << y_ << ")\n"; 
 }
+std::string Unit::get_team(){
+    return team_;
+}
