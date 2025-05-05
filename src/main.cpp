@@ -1,3 +1,5 @@
+// run simulator.exe from build\bin\Debug
+
 #include <iostream>
 #include <fstream>
 #include <json.hpp>  // from external/json.hpp
