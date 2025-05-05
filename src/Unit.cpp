@@ -1,4 +1,5 @@
 #include "Unit.hpp"
+#include "Grid.hpp"
 #include <iostream>
 
 Unit::Unit(int id, std::string team, int x, int y)
@@ -9,4 +10,9 @@ void Unit::print_info() const {
 }
 std::string Unit::get_team(){
     return team_;
+}
+void Unit::move(Grid* grid){
+
+    
+
 }

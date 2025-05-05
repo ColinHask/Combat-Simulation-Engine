@@ -1,3 +1,4 @@
+class Grid;
 #pragma once
 #include <string>
 
@@ -6,6 +7,7 @@ class Unit {
     public:
         Unit(int id, std::string team, int x, int y);
         void print_info() const;
+        void move(Grid* grid);
         std::string get_team();
         // other methods later
 
