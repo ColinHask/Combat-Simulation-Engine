@@ -13,7 +13,10 @@ void Grid::add_wall(int x, int y){
         wall_layer_[y][x] = true;
     }
 }
-void Grid::add_wall(const std::vector<std::pair<int, int>>& positions){
-    
-
+void Grid::add_wall(const std::vector<std::pair<int, int>>& positions) {
+    for (const std::pair<int, int>& pos : positions) {
+        int x = pos.first;
+        int y = pos.second;
+        add_wall(x, y);  // call the other method 
+    }
 }
