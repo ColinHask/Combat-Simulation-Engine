@@ -1,41 +1,42 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+# === General Build Artifacts ===
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
 *.so
-*.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
+*.dylib
 *.a
 *.lib
-
-# Executables
 *.exe
 *.out
 *.app
+*.mod
+*.smod
+*.gch
+*.pch
+*.lo
+*.slo
+*.lai
+*.la
 
-# cmake
+# === CMake Build System ===
 /build/
-/*.o
-/*.exe
-/*.out
+/bin/
 CMakeFiles/
 CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.dir/
 
+# === Visual Studio CMake Extras ===
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.pdb
+*.ilk
+*.tlog/
+*.lastbuildstate
+
+# === Editor Files ===
+*.swp
+*.DS_Store
+*.vscode/

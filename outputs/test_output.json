@@ -1,0 +1,22 @@
+{
+    "grid_size": [
+        10,
+        10
+    ],
+    "status": "ok",
+    "units": [
+        {
+            "id": 1,
+            "team": "red",
+            "x": 2,
+            "y": 3
+        },
+        {
+            "id": 2,
+            "team": "blue",
+            "x": 7,
+            "y": 6
+        }
+    ],
+    "version": 1.0
+}
