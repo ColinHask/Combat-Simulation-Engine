@@ -8,6 +8,8 @@ public:
 
     void add_wall(int x, int y);
     void add_wall(const std::vector<std::pair<int, int>>& positions);
+    bool try_move(Unit* unit, int x, int y);
+    std::pair<int, int> find_unit_coords(Unit* unit);
     void add_unit(int x, int y, Unit* unit);
     void display();
 

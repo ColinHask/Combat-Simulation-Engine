@@ -12,7 +12,5 @@ std::string Unit::get_team(){
     return team_;
 }
 void Unit::move(Grid* grid){
-
     
-
 }

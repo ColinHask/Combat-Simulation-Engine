@@ -37,6 +37,30 @@ void Grid::add_unit(int x, int y, Unit* unit){
         std::cout << "UNIT SKIPPED, UNIT OUT OF BOUNDS\n";
     }
 }
+
+std::pair<int, int> Grid::find_unit_coords(Unit* target){
+    for (int y = 0; y < height_; y++) {
+        for (int x = 0; x < width_; x++) {
+            if (unit_layer_[y][x] == target){
+                return {x, y};
+            }
+          }
+      }
+
+      // invalid coords to signal not found
+      return {-1,-1};
+}
+
+// bool Grid::try_move(Unit* unit, int x, int y){
+//     std::pair<int, int> start_pos = find_unit_coords(unit);
+//     if (start_pos == {-1,-1}){
+//         std::cout << "Unit not found\n";
+//     }
+//     else{
+//         if ()
+//     }
+// }
+
 void Grid::display(){
     for (int y = 0; y < height_; y++) {
         for (int x = 0; x < width_; x++) {
