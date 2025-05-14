@@ -83,6 +83,7 @@ int main() {
     // ...#..
     // .....R
 
+    // 20 move demo
     for(int i = 0; i < 20; i++){
         u1.move(&grid);
         u2.move(&grid);
