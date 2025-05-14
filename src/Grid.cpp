@@ -50,7 +50,8 @@ std::pair<int, int> Grid::find_unit_coords(Unit* target){
       // invalid coords to signal not found
       return {-1,-1};
 }
-
+// attempts to move unit
+// note: x and y are not Goal Locations, they are change in x and y
 bool Grid::try_move(Unit* unit, int x, int y){
     std::pair<int, int> start_pos = find_unit_coords(unit);
     if (start_pos == std::make_pair(-1, -1)){

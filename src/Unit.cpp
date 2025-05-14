@@ -11,6 +11,9 @@ void Unit::print_info() const {
 std::string Unit::get_team(){
     return team_;
 }
+
+// moves unit by continuously attempting to move via grid::try_move
+// note: x and y are not Goal Locations, they are change in x and y
 void Unit::move(Grid* grid){
     // find self coords using grid method (and update internal location)
     // determine goal coords
