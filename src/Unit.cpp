@@ -12,5 +12,15 @@ std::string Unit::get_team(){
     return team_;
 }
 void Unit::move(Grid* grid){
-    
+    // find self coords using grid method (and update internal location)
+    // determine goal coords
+    // loop:
+    //  if (try move):
+    //    find self coords again (validation)
+    //    set internal location vars
+    //    break
+    //  else:
+    //   iterate goal coords (rotate around current location)
+    //   count++ (if > 8 break and say move doesnt happen)
+
 }
