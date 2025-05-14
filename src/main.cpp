@@ -39,17 +39,27 @@ If you get weird linker or file-not-found issues after adding code, do:
 #include <iostream>
 #include <fstream>
 #include <json.hpp>  // from external/json.hpp
+#include <chrono>
+#include <thread>
 #include "Unit.hpp"
 #include "Grid.hpp"
 
 using json = nlohmann::json;
 
 int main() {
-    Unit u1(1, "red", 2, 3);
+    // To DO:
+    // add grid before units
+    // make unit's constructor place it on grid Unit u1(grid, color, x, y)
+    // have them generate their own ID uning static var
+    // add game_controller, list of units, random order per tick, combat detection / resolution
+    Unit u1(1, "red", 5, 5);
     u1.print_info();
 
-    Unit u2(2, "blue", 1, 1);
+    Unit u2(2, "blue", 0, 0);
     u2.print_info();
+
+    Unit u3(3, "blue", 5, 0);
+    u3.print_info();
 
     Grid grid(6, 6);
 
@@ -62,6 +72,7 @@ int main() {
     grid.add_wall(walls);
     grid.add_unit(5, 5, &u1); // pass pointer using &
     grid.add_unit(0, 0, &u2); 
+    grid.add_unit(5, 0, &u3); 
 
     grid.display(); //  visualize
 
@@ -71,6 +82,14 @@ int main() {
     // ...#..
     // ...#..
     // .....R
-    
+
+    for(int i = 0; i < 20; i++){
+        u1.move(&grid);
+        u2.move(&grid);
+        u3.move(&grid);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        grid.display();
+    }
+
     return 0;
 }
