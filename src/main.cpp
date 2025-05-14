@@ -47,10 +47,6 @@ If you get weird linker or file-not-found issues after adding code, do:
 using json = nlohmann::json;
 
 int main() {
-    // To DO:
-    // add grid before units
-    // make unit's constructor place it on grid Unit u1(grid, color, x, y)
-    // have them generate their own ID uning static var
     // add game_controller, list of units, random order per tick, combat detection / resolution
 
     Grid grid(24, 6);

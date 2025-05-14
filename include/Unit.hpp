@@ -1,5 +1,6 @@
 class Grid;
 #pragma once
+#include <vector>
 #include <string>
 
 class Unit {
@@ -19,7 +20,10 @@ class Unit {
         std::string team_;
         int x_;
         int y_;
+        bool right_leaning_;
+        static const std::vector<std::pair<int, int>> right_leaning_moves;
+        static const std::vector<std::pair<int, int>> left_leaning_moves;
         Grid* grid_;
-        std::pair<int, int> last_sucessful_move;
+        std::pair<int, int> last_successful_move;
 
 };
