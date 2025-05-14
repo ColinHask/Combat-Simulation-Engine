@@ -47,9 +47,9 @@ void Unit::move(Grid* grid){
     {1, 0},  // right
     {1, -1}, // diag up-right
     {0, -1}, // up
-    {-1, -1} // diag up-left
+    {-1, -1}, // diag up-left
     {-1, 0}, // left
-    {-1, 1}, // diag down-left
+    {-1, 1} // diag down-left
     };
 
     std::pair<int, int> location = grid->find_unit_coords(this);
