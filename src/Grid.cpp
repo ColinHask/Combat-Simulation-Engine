@@ -51,15 +51,41 @@ std::pair<int, int> Grid::find_unit_coords(Unit* target){
       return {-1,-1};
 }
 
-// bool Grid::try_move(Unit* unit, int x, int y){
-//     std::pair<int, int> start_pos = find_unit_coords(unit);
-//     if (start_pos == {-1,-1}){
-//         std::cout << "Unit not found\n";
-//     }
-//     else{
-//         if ()
-//     }
-// }
+bool Grid::try_move(Unit* unit, int x, int y){
+    std::pair<int, int> start_pos = find_unit_coords(unit);
+    if (start_pos == std::make_pair(-1, -1)){
+        std::cout << "Unit not found\n";
+        return false;
+    }
+    else{
+        // check bounds
+        if (start_pos.first + x >= 0 && start_pos.first  + x < width_ && start_pos.second + y >= 0 && start_pos.second + y < height_){
+            // check walls
+            if (wall_layer_[start_pos.second + y][start_pos.first  + x]){
+                std::cout << "Move not possible, WALL CONFLICT\n";
+                return false;
+            }
+            //check units
+            else if (unit_layer_[start_pos.second + y][start_pos.first  + x] != nullptr){
+                std::cout << "Move not possible, UNIT CONFLICT\n";
+                return false;
+            }
+            else{
+            // SUCCESS! update unit layer
+                unit_layer_[start_pos.second][start_pos.first] = nullptr;
+                unit_layer_[start_pos.second + y][start_pos.first  + x] = unit;
+                std::cout << "unit moved\n";
+                return true;
+            }
+
+        }
+        else{
+            std::cout << "Move not possible\n";
+            return false;
+
+        }
+    }
+}
 
 void Grid::display(){
     for (int y = 0; y < height_; y++) {
