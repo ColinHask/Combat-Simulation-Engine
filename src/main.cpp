@@ -1,4 +1,41 @@
-// run simulator.exe from build\bin\Debug
+
+
+/* 
+========================= CMAKE WORKFLOW REFERENCE =========================
+
+ Folder Structure
+- All source files go in:        /src/
+- All headers go in:            /include/
+- External headers (like JSON): /external/
+- Build artifacts go in:        /build/
+
+ CMake Basics
+1. Configure (generate build files) (do this when new files):
+   > Run this FROM the /build directory:
+   cmake ..
+
+2. Build project:
+   > Still in /build:
+   cmake --build .
+
+3. Run binary (Windows):
+   ./bin/Debug/simulator.exe
+   > or run simulator.exe from build\bin\Debug
+
+ When to Re-run cmake ..:
+- You add new .cpp or .hpp files
+- You change the CMakeLists.txt
+- You add a new external library
+(Otherwise you can just run cmake --build . again)
+
+ Common Fix: 
+If you get weird linker or file-not-found issues after adding code, do:
+> cd build
+> cmake ..         ← reconfigure
+> cmake --build .  ← rebuild
+
+===========================================================================
+*/
 
 #include <iostream>
 #include <fstream>
