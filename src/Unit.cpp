@@ -98,8 +98,31 @@ void Unit::move(){
             return;
         } else {
 
-            // // Rotate left by 1 → [2, 3, 4, 1]
-            std::rotate(moves_.begin(), moves_.begin() + 1, moves_.end());
+            //streamline this later
+
+            static std::mt19937 rng(std::random_device{}());
+
+            // distribution 0‒2  (inclusive)
+            std::uniform_int_distribution<int> dist_chance(0, 2);
+
+            // distribution 0‒7  (inclusive)
+            std::uniform_int_distribution<int> dist_rotation(0, 7);
+
+            // draw the numbers
+            int rand_chance   = dist_chance(rng);     // 0, 1, or 2
+            int rand_rotation = dist_rotation(rng);   // 0 … 7
+
+            // 1/3 chance of random moveset rotation
+            if (rand_chance = 1){
+                // std:: cout << "RANDOM ROTATION ================================================\n";
+                std::rotate(moves_.begin(), moves_.begin() + rand_rotation, moves_.end());
+
+
+            } else {
+                // // Rotate left by 1 → [2, 3, 4, 1]
+                std::rotate(moves_.begin(), moves_.begin() + 1, moves_.end());
+            }
+
 
         }
     }
