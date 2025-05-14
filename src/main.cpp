@@ -52,14 +52,6 @@ int main() {
     // make unit's constructor place it on grid Unit u1(grid, color, x, y)
     // have them generate their own ID uning static var
     // add game_controller, list of units, random order per tick, combat detection / resolution
-    Unit u1(1, "red", 5, 5);
-    u1.print_info();
-
-    Unit u2(2, "blue", 0, 0);
-    u2.print_info();
-
-    Unit u3(3, "blue", 5, 0);
-    u3.print_info();
 
     Grid grid(6, 6);
 
@@ -69,12 +61,20 @@ int main() {
         {2, 2}                   // central block
     };
 
-    grid.add_wall(walls);
-    grid.add_unit(5, 5, &u1); // pass pointer using &
-    grid.add_unit(0, 0, &u2); 
-    grid.add_unit(5, 0, &u3); 
+    grid.add_wall(walls); 
 
     grid.display(); //  visualize
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    Unit u1("red", &grid, 0,0);
+    Unit u2("blue", &grid, 5,5);
+    u1.print_info();
+    u2.print_info();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    grid.display(); //  visualize with units
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     // B#....
     // .#....
@@ -85,10 +85,9 @@ int main() {
 
     // 20 move demo
     for(int i = 0; i < 20; i++){
-        u1.move(&grid);
-        u2.move(&grid);
-        u3.move(&grid);
         std::this_thread::sleep_for(std::chrono::seconds(1));
+        u1.move();
+        u2.move();
         grid.display();
     }
 

@@ -5,18 +5,21 @@ class Grid;
 class Unit {
     
     public:
-        Unit(int id, std::string team, int x, int y);
+        Unit(std::string team, Grid* grid, int x, int y);
         void print_info() const;
-        void update_location(Grid* grid);
-        void move(Grid* grid);
+        void update_location();
+        void move();
         std::string get_team();
 
         // other methods later
 
     private:
         int id_;
+        static int next_id_;
         std::string team_;
         int x_;
         int y_;
+        Grid* grid_;
+        std::pair<int, int> last_sucessful_move;
 
 };
