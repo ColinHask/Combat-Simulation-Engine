@@ -19,10 +19,9 @@
    cmake --build .
 
 3. Run binary (Windows):
-   ./bin/Debug/simulator.exe
-   > or run simulator.exe from build\bin\Debug
+    run simulator.exe from build\bin\Debug
 
- When to Re-run cmake ..:
+ When to Re-run cmake .. :
 - You add new .cpp or .hpp files
 - You change the CMakeLists.txt
 - You add a new external library
@@ -57,7 +56,6 @@ int main() {
     std::vector<std::pair<int, int>> walls = {
         {1, 0}, {1, 1}, {1, 2},  // vertical wall
         {3, 2}, {3, 3}, {3, 4},  // another vertical wall
-        {0, 4}, {1, 4}, {2, 4},  // horizontal wall at the bottom
         {2, 2}                   // central block
     };
 
@@ -66,5 +64,13 @@ int main() {
     grid.add_unit(0, 0, &u2); 
 
     grid.display(); //  visualize
+
+    // B#....
+    // .#....
+    // .###..
+    // ...#..
+    // ...#..
+    // .....R
+    
     return 0;
 }
