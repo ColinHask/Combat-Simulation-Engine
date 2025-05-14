@@ -53,12 +53,15 @@ int main() {
     // have them generate their own ID uning static var
     // add game_controller, list of units, random order per tick, combat detection / resolution
 
-    Grid grid(6, 6);
+    Grid grid(24, 6);
 
     std::vector<std::pair<int, int>> walls = {
         {1, 0}, {1, 1}, {1, 2},  // vertical wall
         {3, 2}, {3, 3}, {3, 4},  // another vertical wall
-        {2, 2}                   // central block
+        {2, 2},                   // central block
+        {7, 0}, {7, 1}, {7, 2}, {7, 3}, {7, 4},  // another vertical wall
+        {6,2}, {7,2}, {8,2}, {9,2}, {10,2}, {11,2}, {12,2}, {13,2}, {14,2}, {15,2}, {16,2}, {17,2}, {18,2}, {19,2}, {20,2}, {21,2}, {22,2}, // huge horiz wall
+        
     };
 
     grid.add_wall(walls); 
@@ -76,16 +79,17 @@ int main() {
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    // B#....
-    // .#....
-    // .###..
-    // ...#..
-    // ...#..
-    // .....R
+        // R#.....#....
+        // .#.....#....
+        // .###...#....
+        // ...#...#....
+        // ...#...#....
+        // .....B......
 
-    // 20 move demo
-    for(int i = 0; i < 20; i++){
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+    // move demo
+    int ms_delay = 300;
+    for(int i = 0; i < 50; i++){
+        std::this_thread::sleep_for(std::chrono::milliseconds(ms_delay));
         u1.move();
         u2.move();
         grid.display();
