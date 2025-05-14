@@ -21,9 +21,7 @@ class Unit {
         int x_;
         int y_;
         bool right_leaning_;
-        static const std::vector<std::pair<int, int>> right_leaning_moves;
-        static const std::vector<std::pair<int, int>> left_leaning_moves;
+        std::vector<std::pair<int, int>> moves_;
         Grid* grid_;
-        std::pair<int, int> last_successful_move;
 
 };

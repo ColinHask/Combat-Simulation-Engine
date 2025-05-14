@@ -1,56 +1,12 @@
 #include "Unit.hpp"
 #include "Grid.hpp"
+#include <algorithm>
 #include <iostream>
 #include <random>
 
-// TO DO:
-// modify moves to be declaired in constructer and a local var
-// rotate moves using below code snippet as reference
-// remove last sucessful move from existance
-//===========================================================
-// #include <algorithm>
-// #include <vector>
 
-// std::vector<int> v = {1, 2, 3, 4};
-
-// // Rotate left by 1 → [2, 3, 4, 1]
-// std::rotate(v.begin(), v.begin() + 1, v.end());
-// =========================================================
-// v.begin() = start of vector
-
-// v.begin() + 1 = new start (element that will move to the front)
-
-// v.end() = end of vector
-
-
-
-    const std::vector<std::pair<int, int>> Unit::right_leaning_moves = {
-    {0, 1},  // down
-    {1, 1},  // diag down-right
-    {1, 0},  // right
-    {1, -1}, // diag up-right
-    {0, -1}, // up
-    {-1, -1}, // diag up-left
-    {-1, 0}, // left
-    {-1, 1} // diag down-left
-    };
-
-    const std::vector<std::pair<int, int>> Unit::left_leaning_moves = {
-    {0, 1},  // down
-    {-1, 1}, // diag down-left
-    {-1, 0}, // left
-    {-1, -1}, // diag up-left
-    {0, -1}, // up
-    {1, -1}, // diag up-right
-    {1, 0},  // right
-    {1, 1}  // diag down-right
-    };
 
 int Unit::next_id_ = 0;
-
-//start with down default
-std::pair<int, int> last_successful_move = {0, 1};
-
 
 
 // Unit automaticly sets ID and adds to grid
@@ -66,7 +22,34 @@ Unit::Unit(std::string team,Grid* grid, int x, int y)
         // right leaning units move in counterclockwise leaning patterns
         right_leaning_ = dist(gen);
 
+        //determine moves
+        if (right_leaning_){
+            moves_ = {
+            {1, 0},  // right
+            {1, -1}, // diag up-right
+            {0, -1}, // up
+            {-1, -1}, // diag up-left
+            {-1, 0}, // left
+            {-1, 1}, // diag down-left
+            {0, 1},  // down
+            {1, 1}  // diag down-right
+            };
+        } else {
+            moves_ = {
+            {-1, 0}, // left
+            {-1, -1}, // diag up-left
+            {0, -1}, // up
+            {1, -1}, // diag up-right
+            {1, 0},  // right
+            {1, 1},  // diag down-right
+            {0, 1},  // down
+            {-1, 1} // diag down-left
+            };
+        }
+        
+
         grid->add_unit(x,y,this);
+
     }
 
 void Unit::print_info() const {
@@ -88,27 +71,12 @@ void Unit::update_location(){
         x_ = location.first;
         y_ = location.second;
     }
-
-    
-
 }
 
 // moves unit by continuously attempting to move via grid::try_move
 // note: x and y are not Goal Locations, they are change in x and y
 void Unit::move(){
 
-
-    // 50% chance unit is right leaning or left leaning
-    // right leaning units move in counterclockwise patterns
-
-    std::vector<std::pair<int, int>> moves;
-
-    if (right_leaning_){
-        moves = right_leaning_moves;
-    }
-    else {
-        moves = left_leaning_moves;
-    }
 
     // for checking moves / debugging move list
     // std::cout << "Unit " << id_ << " checking moves: ";
@@ -121,23 +89,18 @@ void Unit::move(){
 
     // find location for future different unit behavior using this info
     update_location();
-    
-    // try last successful move before iterating
-    bool moved = grid_->try_move(this, last_successful_move.first, last_successful_move.second);
-    if (moved){
-        std:: cout << "Unit Moved!\n";
-        update_location();
-        return;
-    }
 
-    // iterate through trying moves
-    for (const std::pair<int, int>& move : moves){
-        bool moved = grid_->try_move(this, move.first, move.second);
+    for (int i = 0; i < 9; i++){
+        bool moved = grid_->try_move(this, moves_[0].first, moves_[0].second);
         if (moved){
             std:: cout << "Unit Moved!\n";
             update_location();
-            last_successful_move = std::make_pair(move.first, move.second);
             return;
+        } else {
+
+            // // Rotate left by 1 → [2, 3, 4, 1]
+            std::rotate(moves_.begin(), moves_.begin() + 1, moves_.end());
+
         }
     }
     std::cout << "Unit didnt move, all attempts failed\n";
