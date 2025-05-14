@@ -3,6 +3,27 @@
 #include <iostream>
 #include <random>
 
+// TO DO:
+// modify moves to be declaired in constructer and a local var
+// rotate moves using below code snippet as reference
+// remove last sucessful move from existance
+//===========================================================
+// #include <algorithm>
+// #include <vector>
+
+// std::vector<int> v = {1, 2, 3, 4};
+
+// // Rotate left by 1 → [2, 3, 4, 1]
+// std::rotate(v.begin(), v.begin() + 1, v.end());
+// =========================================================
+// v.begin() = start of vector
+
+// v.begin() + 1 = new start (element that will move to the front)
+
+// v.end() = end of vector
+
+
+
     const std::vector<std::pair<int, int>> Unit::right_leaning_moves = {
     {0, 1},  // down
     {1, 1},  // diag down-right
