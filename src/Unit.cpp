@@ -5,6 +5,7 @@
 #include <random>
 
 
+std::mt19937 Unit::RNG{ std::random_device{}() };   // definition + seed
 
 int Unit::next_id_ = 0;
 
@@ -14,13 +15,12 @@ int Unit::next_id_ = 0;
 Unit::Unit(std::string team,Grid* grid, int x, int y)
     : id_(next_id_++), team_(team), x_(x), y_(y), grid_(grid) {
 
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::bernoulli_distribution dist(0.5);  // 50% chance
+       
 
         // 50% chance unit is right leaning or left leaning
         // right leaning units move in counterclockwise leaning patterns
-        right_leaning_ = dist(gen);
+        std::bernoulli_distribution dist(0.5);
+        right_leaning_ = dist(RNG);
 
         //determine moves
         if (right_leaning_){
@@ -98,23 +98,15 @@ void Unit::move(){
             return;
         } else {
 
-            //streamline this later
+            std::uniform_int_distribution<int> dist_chance(0, 2);   
+            std::uniform_int_distribution<int> dist_rotation(0, 7); 
 
-            static std::mt19937 rng(std::random_device{}());
+            int rand_chance   = dist_chance(RNG);
+            int rand_rotation = dist_rotation(RNG);
 
-            // distribution 0‒2  (inclusive)
-            std::uniform_int_distribution<int> dist_chance(0, 4);
-
-            // distribution 0‒7  (inclusive)
-            std::uniform_int_distribution<int> dist_rotation(0, 7);
-
-            // draw the numbers
-            int rand_chance   = dist_chance(rng);     // 0 .. 4
-            int rand_rotation = dist_rotation(rng);   // 0 … 7
-
-            // 1/5 chance of random moveset rotation
-            if (rand_chance = 1){
-                // std:: cout << "RANDOM ROTATION ================================================\n";
+            // 1/3 chance of random moveset rotation
+            if (rand_chance == 1){
+                std:: cout << "RANDOM ROTATION ================================================\n";
                 std::rotate(moves_.begin(), moves_.begin() + rand_rotation, moves_.end());
 
 

@@ -2,6 +2,7 @@ class Grid;
 #pragma once
 #include <vector>
 #include <string>
+#include <random>
 
 class Unit {
     
@@ -23,5 +24,6 @@ class Unit {
         bool right_leaning_;
         std::vector<std::pair<int, int>> moves_;
         Grid* grid_;
+        static std::mt19937 RNG;
 
 };
