@@ -83,8 +83,8 @@ int main() {
         // .....B......
 
     // move demo
-    int ms_delay = 300;
-    for(int i = 0; i < 50; i++){
+    int ms_delay = 200;
+    for(int i = 0; i < 100; i++){
         std::this_thread::sleep_for(std::chrono::milliseconds(ms_delay));
         u1.move();
         u2.move();
